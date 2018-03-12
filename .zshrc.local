@@ -1,0 +1,61 @@
+# default editor
+DEFAULT_EDITOR="nano"
+export SUDO_EDIT=$DEFAULT_EDITOR
+export VISUAL=$DEFAULT_EDITOR
+export EDITOR=$DEFAULT_EDITOR
+
+# syntax highlighting
+source /home/alp/.dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Key mapping
+typeset -A key
+
+#key[Insert]=${terminfo[kich1]}
+#key[PageUp]=${terminfo[kpp]}
+#key[PageDown]=${terminfo[knp]}
+key=(
+    BackSpace  "${terminfo[kbs]}"
+    Home       "${terminfo[khome]}"
+    End        "${terminfo[kend]}"
+    Insert     "${terminfo[kich1]}"
+    Delete     "${terminfo[kdch1]}"
+    Up         "${terminfo[kcuu1]}"
+    Down       "${terminfo[kcud1]}"
+    Left       "${terminfo[kcub1]}"
+    Right      "${terminfo[kcuf1]}"
+    PageUp     "${terminfo[kpp]}"
+    PageDown   "${terminfo[knp]}"
+)
+
+[[ -n "${key[Insert]}"   ]]  && bindkey  "${key[Insert]}"    overwrite-mode
+[[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"    history-beginning-search-backward
+[[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}"  history-beginning-search-forward
+
+# completion and finders
+zstyle ':completion:*' menu select
+
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+
+source /home/alp/.dotfiles/zsh-history-substring-search/zsh-history-substring-search.zsh
+[[ -n "${key[Up]}"   ]]      && bindkey  "${key[Up]}"    history-substring-search-up
+[[ -n "${key[Down]}" ]]      && bindkey  "${key[Down]}"  history-substring-search-down
+
+source /home/alp/.dotfiles/zaw/zaw.zsh
+bindkey '^X' zaw-history
+
+# system aliases
+alias ..="cd .."
+alias du="du -h"
+alias df="df -h"
+
+# shortcut aliases
+alias pac="trizen"
+alias xclip="xclip -selection c"
+
+# git
+alias gst="git status"
+alias gc="git commit"
+alias gca="git commit -a"
+alias gp="git push"
+alias gl="git pull"
