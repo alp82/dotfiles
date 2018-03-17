@@ -1,0 +1,3 @@
+defaults.ctl.card 2; # Sets default device and control to third card (counting begins with 0).
+defaults.pcm.card 2; # This does not change the data type.
+

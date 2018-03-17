@@ -137,7 +137,7 @@ assign [class="Thunderbird"] $workspace4
 assign [class="Rambox"] $workspace5
 assign [class="Gmpc"] $workspace8
 #assign [class="Termite" name="crypto/ella/mine-pool.sh"] $workspace9
-assign [class="Enpass"] $workspace10
+assign [class="Enpass-Desktop"] $workspace10
 
 # define monitors (check with xrandr --current)
 set $monitor_left DVI-I-1
@@ -223,15 +223,15 @@ bar {
 }
 
 # Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master +5%-
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master -5%-
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 1%+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 1%-
 bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
 
 # Media player controls
 bindsym XF86AudioPlay exec mpc play
 bindsym XF86AudioPause exec mpc pause
 bindsym XF86AudioNext exec mpc next
-bindsym XF86AudioPrev exec mpc previous
+bindsym XF86AudioPrev exec mpc prev
 
 #Ãscreenshot controls
 bindsym $mod+c exec flameshot gui
@@ -239,7 +239,9 @@ bindsym $mod+c exec flameshot gui
 # autostart
 exec_always /home/alp/.screenlayout/default.sh
 exec_always --no-startup-id numlockx on
+exec backintime pw-cache start
 exec --no-startup-id [ ! -s ~/.config/mpd/pid ] && mpd
+exec udiskie
 exec parcellite
 exec compton
 exec cmst -m
