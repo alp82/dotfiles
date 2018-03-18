@@ -1,11 +1,18 @@
+# system
+#export LANG=en_US.UTF-8
+#export LC_MESSAGES=C
+export ALSA_CARD=US2x2
+
+# theme
+#powerline-daemon -q
+#source /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
+source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+
 # default editor
 DEFAULT_EDITOR="nano"
 export SUDO_EDIT=$DEFAULT_EDITOR
 export VISUAL=$DEFAULT_EDITOR
 export EDITOR=$DEFAULT_EDITOR
-
-# sound
-export ALSA_CARD=US2x2
 
 # syntax highlighting
 source /home/alp/.dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

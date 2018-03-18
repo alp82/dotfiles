@@ -35,9 +35,23 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
+set $bg-color 	         #2f343f
+set $inactive-bg-color   #2f343f
+set $text-color          #f3f4f5
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #E53935
+
+# window colors
+#                       border              background         text                 indicator
+client.focused          $bg-color           $bg-color          $text-color          #00ff00
+client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color  #00ff00
+client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color  #00ff00
+client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
-bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 800 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
+#bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 800 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
+bindsym $mod+d exec rofi -show run -lines 6 -eh 2 -width 36 -padding 10 -opacity 85 -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18" -show-icons -matching fuzzy -m 1
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -99,7 +113,7 @@ set $workspace3 "3: "
 set $workspace4 "4: "
 set $workspace5 "5: "
 set $workspace6 "6"
-set $workspace7 "7"
+set $workspace7 "7: "
 set $workspace8 "8: "
 set $workspace9 "9: "
 set $workspace10 "10: "
@@ -135,6 +149,7 @@ assign [class="Chromium"] $workspace2
 assign [class="jetbrains-idea"] $workspace3
 assign [class="Thunderbird"] $workspace4
 assign [class="Rambox"] $workspace5
+assign [class="JDownloader"] $workspace7
 assign [class="Gmpc"] $workspace8
 #assign [class="Termite" name="crypto/ella/mine-pool.sh"] $workspace9
 assign [class="Enpass-Desktop"] $workspace10
@@ -190,19 +205,6 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set $bg-color 	         #2f343f
-set $inactive-bg-color   #2f343f
-set $text-color          #f3f4f5
-set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
-
-# window colors
-#                       border              background         text                 indicator
-client.focused          $bg-color           $bg-color          $text-color          #00ff00
-client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color  #00ff00
-client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color  #00ff00
-client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
-
 hide_edge_borders smart
 
 focus_follows_mouse no
@@ -223,12 +225,12 @@ bar {
 }
 
 # Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 1%+
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 1%-
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 2%+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 2%-
 bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
 
 # Media player controls
-bindsym XF86AudioPlay exec mpc play
+bindsym XF86AudioPlay exec mpc toggle
 bindsym XF86AudioPause exec mpc pause
 bindsym XF86AudioNext exec mpc next
 bindsym XF86AudioPrev exec mpc prev
@@ -237,18 +239,20 @@ bindsym XF86AudioPrev exec mpc prev
 bindsym $mod+c exec flameshot gui
 
 # autostart
-exec_always /home/alp/.screenlayout/default.sh
+exec_always --no-startup-id /home/alp/.screenlayout/default.sh
 exec_always --no-startup-id numlockx on
+exec --no-startup-id [ ! -s ~/.config/mpd/pid ] && mpd && mpdscribble && mpc pause
+exec docker-compose -d -f /home/alp/squiek/code/squiek-backend/docker-compose.yml up
 exec backintime pw-cache start
-exec --no-startup-id [ ! -s ~/.config/mpd/pid ] && mpd
 exec udiskie
 exec parcellite
 exec compton
 exec cmst -m
 exec termite
 exec chromium
-exec --no-startup-id idea-ue-eap
-exec --no-startup-id thunderbird
-exec --no-startup-id rambox
+exec idea-ue-eap
+exec thunderbird
+exec rambox
+exec JDownloader
 exec gmpc
 exec enpass
