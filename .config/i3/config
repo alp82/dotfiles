@@ -108,11 +108,11 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 set $workspace1 "1: "
-set $workspace2 "2: "
+set $workspace2 "2: "
 set $workspace3 "3: "
 set $workspace4 "4: "
 set $workspace5 "5: "
-set $workspace6 "6: "
+set $workspace6 "6: "
 set $workspace7 "7: "
 set $workspace8 "8: "
 set $workspace9 "9: "
@@ -165,7 +165,7 @@ workspace $workspace2 output $monitor_center
 workspace $workspace3 output $monitor_center
 workspace $workspace4 output $monitor_right
 workspace $workspace5 output $monitor_right
-workspace $workspace6 output $monitor_center
+workspace $workspace6 output $monitor_left
 workspace $workspace7 output $monitor_center
 workspace $workspace8 output $monitor_center
 workspace $workspace9 output $monitor_right
@@ -236,14 +236,17 @@ bindsym XF86AudioPause exec mpc pause
 bindsym XF86AudioNext exec mpc next
 bindsym XF86AudioPrev exec mpc prev
 
-#�screenshot controls
+# Screenshot controls
 bindsym $mod+c exec flameshot gui
 
 # autostart
 exec_always --no-startup-id /home/alp/.screenlayout/default.sh
 exec_always --no-startup-id numlockx on
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id flashfocus
 exec --no-startup-id [ ! -s ~/.config/mpd/pid ] && mpd && mpdscribble && mpc pause
 exec docker-compose -d -f /home/alp/squiek/code/squiek-backend/docker-compose.yml up
+exec --no-startup-id flameshot
 exec backintime pw-cache start
 exec udiskie
 exec parcellite
