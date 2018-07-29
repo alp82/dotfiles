@@ -8,7 +8,7 @@
 	"start_minimized": false,
 	"systemtray_indicator": false,
 	"master_password": false,
-	"dont_disturb": "true",
+	"dont_disturb": "false",
 	"disable_gpu": true,
 	"proxy": false,
 	"proxyHost": "",

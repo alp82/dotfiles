@@ -104,6 +104,12 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
+# better floating detection
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+#for_window [title="Preferences$"] floating enable
+#for_window [class="(?i)mplayer"] floating enable
+
 # focus the parent container
 bindsym $mod+a focus parent
 
@@ -209,8 +215,27 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-hide_edge_borders smart
+# shutdown, hibernate, reboot, lock
+set $Locker i3lock && sleep 1
 
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id ((pidof chromium && kill $(pidof chromium)) || echo 'chromium not running') && sleep 1 && systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id ((pidof chromium && kill $(pidof chromium)) || echo 'chromium not running') && sleep 1 && systemctl poweroff -i, mode "default"  
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Pause mode "$mode_system"
+
+# i3 settings
+hide_edge_borders smart
 focus_follows_mouse no
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -248,8 +273,9 @@ exec_always --no-startup-id numlockx on
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id flashfocus
 exec --no-startup-id [ ! -s ~/.config/mpd/pid ] && mpd && mpdscribble && mpc pause
-exec docker-compose -d -f /home/alp/squiek/code/squiek-backend/docker-compose.yml up
+#exec docker-compose -d -f /home/alp/squiek/code/squiek-backend/docker-compose.yml up
 exec --no-startup-id flameshot
+exec --no-startup-id dropbox
 exec backintime pw-cache start
 exec udiskie
 exec parcellite

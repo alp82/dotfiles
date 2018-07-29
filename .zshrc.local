@@ -7,6 +7,9 @@ export ALSA_CARD=US2x2
 #powerline-daemon -q
 #source /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
 source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir virtualenv vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
+
 
 # default editor
 DEFAULT_EDITOR="nano"
@@ -71,3 +74,8 @@ alias ga="git add"
 alias gaf="git add --force"
 alias gp="git push"
 alias gl="git pull"
+
+# dev
+alias sqe="source ~/squiek/env/squiek-env/bin/activate"
+alias sqb="cd ~/squiek/code/squiek-backend"
+alias sqf="cd ~/squiek/code/squiek-frontend"
