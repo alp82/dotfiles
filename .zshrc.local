@@ -3,13 +3,15 @@
 #export LC_MESSAGES=C
 export ALSA_CARD=US2x2
 
+# coloring
+export GREP_COLOR='00;38;5;226'
+
 # theme
 #powerline-daemon -q
 #source /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
 source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir virtualenv vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
-
 
 # default editor
 DEFAULT_EDITOR="nano"
@@ -49,6 +51,7 @@ zstyle ':completion:*' menu select
 
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
+export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
 
 source /home/alp/.dotfiles/zsh-history-substring-search/zsh-history-substring-search.zsh
 [[ -n "${key[Up]}"   ]]      && bindkey  "${key[Up]}"    history-substring-search-up
@@ -59,12 +62,19 @@ bindkey '^X' zaw-history
 
 # system aliases
 alias ..="cd .."
-alias du="du -h"
+#alias du="du -h"
 alias df="df -h"
+#grep="grep '--color=auto"
 
-# shortcut aliases
+# command overrides
+alias cat="bat"
+alias man="tldr"
+alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
+
+# shortcuts
 alias pac="trizen"
 alias xclip="xclip -selection c"
+alias preview="fzf --preview 'bat --color \"always\" {}'"
 
 # git
 alias gst="git status"
@@ -79,3 +89,4 @@ alias gl="git pull"
 alias sqe="source ~/squiek/env/squiek-env/bin/activate"
 alias sqb="cd ~/squiek/code/squiek-backend"
 alias sqf="cd ~/squiek/code/squiek-frontend"
+alias sqd="cd ~/squiek/code/squiek-deploy"
