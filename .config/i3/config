@@ -284,16 +284,21 @@ bar {
 	}
 }
 
-# Audio controls
+# Audio and media player controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 2%+
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 2%-
 bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
 
-# Media player controls
 bindsym XF86AudioPlay exec mpc toggle
 bindsym XF86AudioPause exec mpc pause
 bindsym XF86AudioNext exec mpc next
 bindsym XF86AudioPrev exec mpc prev
+
+bindsym $mod+XF86AudioPlay exec mpc random
+bindsym $mod+XF86AudioNext exec mpc random
+bindsym $mod+XF86AudioPrev exec mpc random
+bindsym $mod+XF86AudioRaiseVolume exec mpc random on
+bindsym $mod+XF86AudioLowerVolume exec mpc random off
 
 # Screenshot controls
 bindsym Print exec flameshot gui
