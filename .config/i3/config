@@ -50,7 +50,7 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
 #bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 800 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
-bindsym $mod+d exec rofi -show run -lines 6 -eh 2 -width 36 -padding 10 -opacity 85 -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18" -show-icons -matching fuzzy -m 0
+bindsym $mod+d exec rofi -show run -lines 8 -columns 2 -eh 2 -width 40 -padding 10 -opacity "75" -bw 1 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18" -show-icons -matching fuzzy -m -4 -sidebar-mode
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -228,7 +228,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # shutdown, hibernate, reboot, lock
-set $Locker i3lock && sleep 1
+set $Locker i3lock-fancy -n -b=0x20 && sleep 1
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
@@ -310,10 +310,11 @@ exec_always --no-startup-id /home/alp/.screenlayout/default.sh
 exec_always --no-startup-id numlockx on
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id flashfocus
+exec easystroke hide
 exec --no-startup-id [ ! -s ~/.config/mpd/pid ] && mpd && mpdscribble && mpc pause
 #exec docker-compose -d -f /home/alp/squiek/code/squiek-backend/docker-compose.yml up
-exec --no-startup-id flameshot
-exec --no-startup-id dropbox
+exec flameshot
+exec dropbox
 exec backintime pw-cache start
 exec udiskie
 exec parcellite
@@ -328,7 +329,7 @@ exec chromium
 exec idea-ue-eap
 exec gmpc
 #exec spotify
-exec Thunar
+#exec Thunar
 
 exec thunderbird
 exec rambox

@@ -1,6 +1,7 @@
 {
 	"always_on_top": false,
 	"hide_menu_bar": false,
+	"tabbar_location": "top",
 	"window_display_behavior": "show_taskbar",
 	"auto_launch": true,
 	"flash_frame": true,
@@ -17,7 +18,9 @@
 	"proxyPassword": "",
 	"locale": "en",
 	"enable_hidpi_support": false,
+	"user_agent": "",
 	"default_service": "ramboxTab",
+	"sendStatistics": false,
 	"x": 3760,
 	"y": 22,
 	"width": 1200,
