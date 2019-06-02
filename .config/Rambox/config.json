@@ -2,6 +2,7 @@
 	"always_on_top": false,
 	"hide_menu_bar": false,
 	"tabbar_location": "top",
+	"hide_tabbar_labels": false,
 	"window_display_behavior": "show_taskbar",
 	"auto_launch": true,
 	"flash_frame": true,

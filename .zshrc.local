@@ -13,11 +13,18 @@ source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir virtualenv vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
 
+# default terminal
+export TERM="termite"
+export TERMINAL="termite"
+
 # default editor
 DEFAULT_EDITOR="nano"
 export SUDO_EDIT=$DEFAULT_EDITOR
 export VISUAL=$DEFAULT_EDITOR
 export EDITOR=$DEFAULT_EDITOR
+
+# path
+export PATH=/home/alp/bin:$PATH
 
 # syntax highlighting
 source /home/alp/.dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
